@@ -22,13 +22,18 @@ The request body should be in JSON format and include the following fields:
 
 ### Example Response
 
-- `user` (object):
-  - `fullname` (object).
-    - `firstname` (string): User's first name (minimum 4 characters).
-    - `lastname` (string, optional)
-  - `email` (string): User's email address (must be a valid email).
-  - `password` (string): User's password (minimum 6 characters).
-- `token` (String): JWT Token
+```json
+{
+  "user": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john@example.com"
+  },
+  "token": "jwt_token_here"
+}
+```
 
 ## `/users/login` Endpoint
 
@@ -49,18 +54,18 @@ The request body should be in JSON format and include the following fields:
 
 ### Example Response
 
-- `token` (string): JWT token for authentication.
-- `user` (object): User object containing user information.
-
-### Example Response
-
-- `user` (object):
-  - `fullname` (object).
-    - `firstname` (string): User's first name (minimum 4 characters).
-    - `lastname` (string, optional)
-  - `email` (string): User's email address (must be a valid email).
-  - `password` (string): User's password (minimum 6 characters).
-- `token` (String): JWT Token
+```json
+{
+  "user": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john@example.com"
+  },
+  "token": "jwt_token_here"
+}
+```
 
 ## `/users/profile` Endpoint
 
@@ -79,13 +84,17 @@ Requires a valid JWT token in the Authorization header:
 
 ### Response
 
-Returns the user object containing profile information:
-
-- `user` (object):
-  - `fullname` (object)
-    - `firstname` (string): User's first name
-    - `lastname` (string): User's last name
-  - `email` (string): User's email address
+```json
+{
+  "user": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john@example.com"
+  }
+}
+```
 
 ## `/users/logout` Endpoint
 
@@ -106,11 +115,9 @@ Requires a valid JWT token either in:
 
 ### Response
 
-Status 200 with message:
-
 ```json
 {
-  "message": "Logout successfully"
+  "message": "Logged out successfully"
 }
 ```
 
@@ -182,12 +189,13 @@ The request body should be in JSON format and include the following fields:
 
 ### Validation Rules
 
-- Email must be valid
-- First name must be at least 3 characters long
-- Last name is optional
-- Password must be at least 6 characters long
-- Vehicle color must be at least 3 characters long
-- Vehicle plate must be at least 3 characters long
-- Vehicle capacity must be at least 1
-- status is by default inactive
-- Vehicle type must be one of: "car", "motorcycle", "auto"
+- Email must be valid.
+- First name must be at least 3 characters long.
+- Last name is optional.
+- Password must be at least 6 characters long.
+- Vehicle color must be at least 3 characters long.
+- Vehicle plate must be at least 3 characters long.
+- Vehicle capacity must be at least 1.
+- `status` is by default `inactive`.
+- Vehicle type must be one of: "car", "motorcycle", "auto".
+- All fields are required unless marked optional.
