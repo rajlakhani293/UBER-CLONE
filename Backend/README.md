@@ -199,3 +199,116 @@ The request body should be in JSON format and include the following fields:
 - `status` is by default `inactive`.
 - Vehicle type must be one of: "car", "motorcycle", "auto".
 - All fields are required unless marked optional.
+
+## `/captains/login` Endpoint
+
+### Description
+
+Authenticates a captain and provides a JWT token for subsequent requests.
+
+### HTTP Method
+
+`POST`
+
+### Request Body
+
+The request body should be in JSON format and include the following fields:
+
+- `email` (string, required): Captain's email address
+- `password` (string, required): Captain's password (minimum 6 characters)
+
+### Example Request
+
+```json
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+```
+
+### Example Response
+
+```json
+{
+  "token": "jwt_token_here",
+  "captain": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john@example.com",
+    "vehicle": {
+      "color": "Black",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car"
+    },
+    "status": "inactive"
+  }
+}
+```
+
+## `/captains/profile` Endpoint
+
+### Description
+
+Retrieves the profile information of the currently authenticated captain.
+
+### HTTP Method
+
+`GET`
+
+### Authentication
+
+Requires a valid JWT token in the Authorization header:
+`Authorization: Bearer <token>`
+
+### Response
+
+```json
+{
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"
+  },
+  "email": "john@example.com",
+  "vehicle": {
+    "color": "Black",
+    "plate": "ABC123",
+    "capacity": 4,
+    "vehicleType": "car"
+  },
+  "status": "inactive"
+}
+```
+
+## `/captains/logout` Endpoint
+
+### Description
+
+Logs out the currently authenticated captain by invalidating their JWT token.
+
+### HTTP Method
+
+`GET`
+
+### Authentication
+
+Requires a valid JWT token either in:
+
+- Cookie named 'token'
+- Authorization header: `Authorization: Bearer <token>`
+
+### Response
+
+```json
+{
+  "message": "Captain logged out"
+}
+```
+
+### Notes
+
+- The token used for authentication will be blacklisted upon logout
+- Subsequent requests with the same token will be rejected
+- Cookies will be cleared if token was stored in cookies
