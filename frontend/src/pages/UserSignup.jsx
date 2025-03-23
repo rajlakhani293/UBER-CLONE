@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserDataContext } from "../context/UserContext";
+import uberlogo from "../assets/img/UberLogo.png";
 
 const UserSignup = () => {
   const [email, setEmail] = useState("");
@@ -44,11 +45,7 @@ const UserSignup = () => {
   return (
     <div className="p-7 h-screen flex flex-col justify-between ">
       <div>
-        <img
-          className="w-16 mb-8"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Uber_logo_2018.png/1200px-Uber_logo_2018.png"
-          alt=""
-        />
+        <img className="w-16 mb-8" src={uberlogo} alt="" />
         <form onSubmit={(e) => submitHandler(e)}>
           <h3 className="text-lg font-medium mb-2">What's your Name</h3>
           <div className="flex gap-4 mb-6">

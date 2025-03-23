@@ -1,5 +1,5 @@
 import React from "react";
-import uberimg from "../public/img/Uber.jpg";
+import uberimg from "../assets/img/Uber.jpg";
 import { Link } from "react-router-dom";
 
 const Start = () => {
